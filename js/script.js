@@ -10,17 +10,46 @@ $(document).ready(function() {
     video.oncanplay = function() {
         video.play();
         audio.play();
-        isPlaying = true;
+        isPlaying = false;
     };
 
     // Handle video loading errors
     video.onerror = function() {
         console.error('Error loading video');
-        // You can display a message to the user or retry loading the video
     };
+
+    async function getIP() {
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            document.getElementById('main-text').innerText = `hi ${data.ip}`;
+            keepchangingit(data);
+
+        } catch (error) {
+            console.error('Error fetching IP address:', error);
+        }
+    }
+
+    function fadechange(newtext) {
+        $('#main-text').fadeOut('slow', function() {
+            document.getElementById('main-text').innerText = newtext;
+            $('#main-text').fadeIn('slow')
+        });
+    }
+
+
+    function keepchangingit(data) {
+        sleep(5000).then(() => {
+            fadechange(`welcome to serverzap.lol`);
+            sleep(2000).then(() => {
+                
+            });
+        }); 
+    }
 
     // Handle button click
     $('#enter-button').click(function() {
+        getIP();
         $('#enter-site').fadeOut('slow', function() {
             $('#content').fadeIn('slow', function() {
                 // Play both audio and video
@@ -29,6 +58,17 @@ $(document).ready(function() {
             });
         });
     });
+
+    $('#legacy').click(function() {
+        fadechange(`welcome to serverzap.lol`);
+        video.src = 'assets/sigma.png';
+        
+    });
+
+    // i totally made this 👍👍
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     // Handle tab visibility change
     document.addEventListener('visibilitychange', function() {
@@ -46,14 +86,11 @@ $(document).ready(function() {
             }
         }
     });
-
-    // Optional: Handle when audio ends to stop the video as well
     audio.onended = function() {
         video.pause();
         isPlaying = false;
     };
 
-    // Optional: Handle when video ends to stop the audio as well
     video.onended = function() {
         audio.pause();
         isPlaying = false;
