@@ -1,37 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>serverzap.lol</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/index.css">
+  <title>Domain Seizure</title>
+  <style>
+  html,
+  body {
+    background-color: black;
+  }
+
+  .seized {
+    margin: auto;
+    padding-top: 9%;
+    width: 80vw;
+    max-width: 1920px;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-image: url("seized.png");
+    background-size: contain;
+    color: white;
+    text-align: center;
+    font-size: 25px;
+  }
+
+  @media screen and (min-width: 400px) {
+    .seized {
+      font-size: 30px;
+    }
+  }
+
+  @media screen and (min-width: 600px) {
+    .seized {
+      font-size: 40px;
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    .seized {
+      font-size: 50px;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .seized {
+      font-size: 70px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .seized {
+      font-size: 80px;
+    }
+  }
+  </style>
 </head>
+
 <body>
-    </div>
-    <div id="enter-site">
-        <button id="enter-button">enter serverzap.lol</button>
-    </div>
-    <div id="content" style="display:none;">
-        <audio id="background-music" loop>
-            <source src="./assets/skuy.mp3" type="audio/mpeg">
-        </audio>
-        <img id="background-video" src="./assets/gradimg.png" looped muted></img>
-        <h1 id="main-text">serverzap.lol</h1>
-		<p id="side-text">background isnt animated sry will come soon</p>
-        <div id="buttons">
-            <a href="https://discord.com/users/1292856567951261766">
-                <button>discord</button>
-            </a>
-            <a href="https://github.com/ServerZap">
-                <button>github</button>
-            </a>
-        </div>
-        
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="./js/script.js"></script>
+  <div class="seized">
+    <script type="text/javascript" src="puny-min.js"></script>
+    <script>
+      var rawDomainName = window.location.hostname
+      var domainName = (rawDomainName.startsWith('xn--')) ? punyDecodeDomain(rawDomainName) : rawDomainName
+      document.write(domainName)
+    </script>
+  </div>
+  <!-- Fork me on Github: https://github.com/Linuzifer/domain_seizure -->
 </body>
+
 </html>
